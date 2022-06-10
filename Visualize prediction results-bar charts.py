@@ -25,10 +25,12 @@ titlefont = {'family': 'Times New Roman',
         }
 plt.figure(figsize=[15,10])
 
+# read raw data
+test_data = pd.read_csv("prediction_clean_spc.csv", encoding="latin-1")
+
 
 # 1 - stacked bar charts(for all category)
-# read data
-test_data = pd.read_csv("prediction_clean_spc.csv", encoding="latin-1")
+# calculate number of tweets by category and sentiment
 count_data = test_data.groupby(['category','sentiment'])['real_id'].count().reset_index(). # 'real_id' here is the unique id for each tweet
 # remove category 'Immigration approval' because there are only several pieces of tweets about this topic, which is no solid enough
 count_data = count_data[count_data['category']!='Immigration approval']
